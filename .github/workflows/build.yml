@@ -83,10 +83,21 @@ jobs:
     # $$$sync-with-template-modifiable: validation $$$
 
     - name: Run current action
+      id: current
       uses: ./
       with:
-        dryRun: 'true'
         githubToken: ${{github.token}}
+
+    - name: Validate current action
+      env:
+        CORE_LIMIT: ${{ steps.current.outputs.coreLimit }}
+      run: |
+        if [ "${{env.CORE_LIMIT}} > 0" == "true" ]; then
+          echo "Valid"
+        else
+          echo "::error::Current action output doesn't contain '3.0.6': $ALL_MATRIX_INCLUDES"
+          exit 1
+        fi
 
     # $$$sync-with-template-modifiable-end$$$
 

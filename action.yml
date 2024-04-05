@@ -6,10 +6,44 @@ inputs:
     required: true
     default: '${{github.token}}'
     description: GitHub access token
-  dryRun:
-    required: true
-    default: 'false'
-    description: Set to 'true' to enable dry run
+
+outputs:
+  coreLimit:
+    description: Requests limit for `core` resource
+  coreUsed:
+    description: Used requests for `core` resource
+  graphqlLimit:
+    description: Requests limit for `graphql` resource
+  graphqlUsed:
+    description: Used requests for `graphql` resource
+  searchLimit:
+    description: Requests limit for `search` resource
+  searchUsed:
+    description: Used requests for `search` resource
+  codeSearchLimit:
+    description: Requests limit for `code_search` resource
+  codeSearchUsed:
+    description: Used requests for `code_search` resource
+  integrationManifestLimit:
+    description: Requests limit for `integration_manifest` resource
+  integrationManifestUsed:
+    description: Used requests for `integration_manifest` resource
+  codeScanningUploadLimit:
+    description: Requests limit for `code_scanning_upload` resource
+  codeScanningUploadUsed:
+    description: Used requests for `code_scanning_upload` resource
+  actionsRunnerRegistrationLimit:
+    description: Requests limit for `actions_runner_registration` resource
+  actionsRunnerRegistrationUsed:
+    description: Used requests for `actions_runner_registration` resource
+  scimLimit:
+    description: Requests limit for `scim` resource
+  scimUsed:
+    description: Used requests for `scim` resource
+  dependencySnapshotsLimit:
+    description: Requests limit for `dependency_snapshots` resource
+  dependencySnapshotsUsed:
+    description: Used requests for `dependency_snapshots` resource
 
 runs:
   using: node20
