@@ -91,11 +91,18 @@ jobs:
     - name: Validate current action
       env:
         CORE_LIMIT: ${{ steps.current.outputs.coreLimit }}
+        CORE_USAGE: ${{ steps.current.outputs.coreUsed / steps.current.outputs.coreLimit }}
       run: |
         if [ "${{env.CORE_LIMIT > 0}}" == "true" ]; then
           echo "Valid"
         else
           echo "::error::Core limit is NOT greater than 0: $CORE_LIMIT"
+          exit 1
+        fi
+        if [ "${{env.CORE_USAGE <= 1}}" == "true" ]; then
+          echo "Valid"
+        else
+          echo "::error::Core usage is NOT less than is equal to 0: $CORE_USAGE"
           exit 1
         fi
 
