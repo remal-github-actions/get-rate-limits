@@ -8,38 +8,56 @@ inputs:
     description: GitHub access token
 
 outputs:
+  coreUsage:
+    description: Requests usage percent (used / limit) for `core` resource
   coreLimit:
     description: Requests limit for `core` resource
   coreUsed:
     description: Used requests for `core` resource
+  graphqlUsage:
+      description: Requests usage percent (used / limit) for `graphql` resource
   graphqlLimit:
     description: Requests limit for `graphql` resource
   graphqlUsed:
     description: Used requests for `graphql` resource
+  searchUsage:
+    description: Requests usage percent (used / limit) for `search` resource
   searchLimit:
     description: Requests limit for `search` resource
   searchUsed:
     description: Used requests for `search` resource
+  codeSearchUsage:
+    description: Requests usage percent (used / limit) for `code_search` resource
   codeSearchLimit:
     description: Requests limit for `code_search` resource
   codeSearchUsed:
     description: Used requests for `code_search` resource
+  integrationManifestUsage:
+    description: Requests usage percent (used / limit) for `integration_manifest` resource
   integrationManifestLimit:
     description: Requests limit for `integration_manifest` resource
   integrationManifestUsed:
     description: Used requests for `integration_manifest` resource
+  codeScanningUploadUsage:
+    description: Requests usage percent (used / limit) for `code_scanning_upload` resource
   codeScanningUploadLimit:
     description: Requests limit for `code_scanning_upload` resource
   codeScanningUploadUsed:
     description: Used requests for `code_scanning_upload` resource
+  actionsRunnerRegistrationUsage:
+    description: Requests usage percent (used / limit) for `actions_runner_registration` resource
   actionsRunnerRegistrationLimit:
     description: Requests limit for `actions_runner_registration` resource
   actionsRunnerRegistrationUsed:
     description: Used requests for `actions_runner_registration` resource
+  scimUsage:
+    description: Requests usage percent (used / limit) for `scim` resource
   scimLimit:
     description: Requests limit for `scim` resource
   scimUsed:
     description: Used requests for `scim` resource
+  dependencySnapshotsUsage:
+    description: Requests usage percent (used / limit) for `dependency_snapshots` resource
   dependencySnapshotsLimit:
     description: Requests limit for `dependency_snapshots` resource
   dependencySnapshotsUsed:
