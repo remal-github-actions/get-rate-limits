@@ -33434,7 +33434,9 @@ async function run() {
     try {
         const rateLimit = await octokit.rateLimit.get({})
             .then(it => it.data);
-        core.info("Rate limits: " + JSON.stringify(rateLimit, null, 2));
+        await core.group("GitHub Rate Limits API call response", async () => {
+            core.info(JSON.stringify(rateLimit, null, 2));
+        });
         for (const resource in defaultLimits) {
             const defaultLimit = defaultLimits[resource];
             if (defaultLimit == null) {
@@ -33444,7 +33446,6 @@ async function run() {
             const used = rateLimit.resources[resource]?.used ?? 0;
             const usage = 100 * Math.floor(used / limit);
             const outputName = resource.replaceAll(/_([a-z])/g, match => match[1].toUpperCase());
-            core.info(outputName);
             core.setOutput(`${outputName}Usage`, usage);
             core.setOutput(`${outputName}Limit`, limit);
             core.setOutput(`${outputName}Used`, used);
