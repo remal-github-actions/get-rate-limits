@@ -28,7 +28,9 @@ async function run(): Promise<void> {
     try {
         const rateLimit: RateLimitOverview = await octokit.rateLimit.get({})
             .then(it => it.data)
-        core.info("Rate limits: " + JSON.stringify(rateLimit, null, 2))
+        await core.group("GitHub Rate Limits API call response", async () => {
+            core.info(JSON.stringify(rateLimit, null, 2))
+        })
 
         for (const resource in defaultLimits) {
             const defaultLimit = defaultLimits[resource]
