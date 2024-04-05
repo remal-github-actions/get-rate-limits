@@ -14,13 +14,13 @@ const octokit = newOctokitInstance(githubToken)
 const defaultLimits: Record<RateLimitResource, number | null> = {
     'core': 5_000,
     'graphql': 5_000,
-    'search': 5_000,
-    'code_search': 5_000,
+    'search': 30,
+    'code_search': 10,
     'integration_manifest': 5_000,
-    'code_scanning_upload': 5_000,
-    'actions_runner_registration': 5_000,
-    'scim': 5_000,
-    'dependency_snapshots': 5_000,
+    'code_scanning_upload': 500,
+    'actions_runner_registration': 10_000,
+    'scim': 15_000,
+    'dependency_snapshots': 100,
     'source_import': null,
 }
 
@@ -30,10 +30,10 @@ async function run(): Promise<void> {
             .then(it => it.data)
         core.info("Rate limits: " + JSON.stringify(rateLimit, null, 2))
 
-        Object.entries(defaultLimits).forEach((resourceKey, defaultLimit) => {
-            const resource = resourceKey.toString()
+        for (const resource in defaultLimits) {
+            const defaultLimit = defaultLimits[resource]
             if (defaultLimit == null) {
-                return
+                continue
             }
 
             const limit = rateLimit.resources[resource]?.limit ?? defaultLimit
@@ -45,7 +45,7 @@ async function run(): Promise<void> {
             core.setOutput(`${outputName}Usage`, usage)
             core.setOutput(`${outputName}Limit`, limit)
             core.setOutput(`${outputName}Used`, used)
-        })
+        }
 
 
     } catch (error) {
