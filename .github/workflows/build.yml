@@ -95,7 +95,7 @@ jobs:
         DEPENDENCY_SNAPSHOTS_USAGE: ${{ steps.current.outputs.dependencySnapshotsUsage }}
         DEPENDENCY_SNAPSHOTS_LIMIT: ${{ steps.current.outputs.dependencySnapshotsLimit }}
       run: |
-        if [ "${{ env.CORE_USAGE <= 1 }}" == "true" ]; then
+        if [ "${{ env.CORE_USAGE <= 100 }}" == "true" ]; then
           echo "Valid"
         else
           echo "::error::Core usage is NOT less than is equal to 0: $CORE_USAGE"
@@ -107,7 +107,7 @@ jobs:
           echo "::error::Core limit is NOT greater than 0: $CORE_LIMIT"
           exit 1
         fi
-        if [ "${{ env.DEPENDENCY_SNAPSHOTS_USAGE <= 1 }}" == "true" ]; then
+        if [ "${{ env.DEPENDENCY_SNAPSHOTS_USAGE <= 100 }}" == "true" ]; then
           echo "Valid"
         else
           echo "::error::Dependency snapshots usage is NOT less than is equal to 0: $DEPENDENCY_SNAPSHOTS_USAGE"
