@@ -1,2 +1,2 @@
-# rate-limit
+# get-rate-limits
 

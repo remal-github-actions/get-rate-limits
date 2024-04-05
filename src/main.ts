@@ -41,7 +41,6 @@ async function run(): Promise<void> {
             const usage = 100 * Math.floor(used / limit)
 
             const outputName = resource.replaceAll(/_([a-z])/g, match => match[1].toUpperCase())
-            core.info(outputName)
             core.setOutput(`${outputName}Usage`, usage)
             core.setOutput(`${outputName}Limit`, limit)
             core.setOutput(`${outputName}Used`, used)
