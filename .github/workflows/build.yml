@@ -92,10 +92,10 @@ jobs:
       env:
         CORE_LIMIT: ${{ steps.current.outputs.coreLimit }}
       run: |
-        if [ "${{env.CORE_LIMIT}} > 0" == "true" ]; then
+        if [ "${{env.CORE_LIMIT > 0}}" == "true" ]; then
           echo "Valid"
         else
-          echo "::error::Current action output doesn't contain '3.0.6': $ALL_MATRIX_INCLUDES"
+          echo "::error::Core limit is NOT greater than 0: $CORE_LIMIT"
           exit 1
         fi
 
