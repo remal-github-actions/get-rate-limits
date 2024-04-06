@@ -33444,7 +33444,7 @@ async function run() {
             }
             const limit = rateLimit.resources[resource]?.limit ?? defaultLimit;
             const used = rateLimit.resources[resource]?.used ?? 0;
-            const usage = 100 * Math.floor(used / limit);
+            const usage = Math.floor(100 * (used / limit));
             const outputName = resource.replaceAll(/_([a-z])/g, match => match[1].toUpperCase());
             core.setOutput(`${outputName}Usage`, usage);
             core.setOutput(`${outputName}Limit`, limit);
