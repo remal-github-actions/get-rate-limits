@@ -1,14 +1,15 @@
 import * as core from '@actions/core'
-import {components} from '@octokit/openapi-types'
-import {newOctokitInstance} from './internal/octokit'
+import type { components } from '@octokit/openapi-types'
+import { newOctokitInstance } from './internal/octokit'
 
-type RateLimitOverview = components["schemas"]["rate-limit-overview"]
+type RateLimitOverview = components['schemas']['rate-limit-overview']
 type RateLimitResource = keyof RateLimitOverview['resources']
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-const githubToken = core.getInput('githubToken', {required: true})
+const githubToken = core.getInput('githubToken', { required: true })
 core.setSecret(githubToken)
+
 const octokit = newOctokitInstance(githubToken)
 
 const defaultLimits: Record<RateLimitResource, number | null> = {
@@ -28,7 +29,7 @@ async function run(): Promise<void> {
     try {
         const rateLimit: RateLimitOverview = await octokit.rateLimit.get({})
             .then(it => it.data)
-        await core.group("GitHub Rate Limits API call response", async () => {
+        await core.group('GitHub Rate Limits API call response', async () => {
             core.info(JSON.stringify(rateLimit, null, 2))
         })
 
