@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
 import type { components } from '@octokit/openapi-types'
-import { newOctokitInstance } from './internal/octokit'
+import { newOctokitInstance } from './internal/octokit.js'
 
 type RateLimitOverview = components['schemas']['rate-limit-overview']
 type RateLimitResource = keyof RateLimitOverview['resources']
