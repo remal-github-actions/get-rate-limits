@@ -38523,9 +38523,11 @@ const defaultLimits = {
     'code_search': 10,
     'integration_manifest': 5_000,
     'code_scanning_upload': 500,
+    'code_scanning_autofix': null,
     'actions_runner_registration': 10_000,
     'scim': 15_000,
     'dependency_snapshots': 100,
+    'dependency_sbom': null,
     'source_import': null,
 };
 async function run() {
