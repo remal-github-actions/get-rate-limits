@@ -15,7 +15,7 @@ outputs:
   coreUsed:
     description: Used requests for `core` resource
   graphqlUsage:
-      description: Requests usage percent (used / limit) for `graphql` resource
+    description: Requests usage percent (used / limit) for `graphql` resource
   graphqlLimit:
     description: Requests limit for `graphql` resource
   graphqlUsed:
@@ -44,6 +44,12 @@ outputs:
     description: Requests limit for `code_scanning_upload` resource
   codeScanningUploadUsed:
     description: Used requests for `code_scanning_upload` resource
+  codeScanningAutofixUsage:
+    description: Requests usage percent (used / limit) for `code_scanning_autofix` resource
+  codeScanningAutofixLimit:
+    description: Requests limit for `code_scanning_autofix` resource
+  codeScanningAutofixUsed:
+    description: Used requests for `code_scanning_autofix` resource
   actionsRunnerRegistrationUsage:
     description: Requests usage percent (used / limit) for `actions_runner_registration` resource
   actionsRunnerRegistrationLimit:
@@ -62,6 +68,12 @@ outputs:
     description: Requests limit for `dependency_snapshots` resource
   dependencySnapshotsUsed:
     description: Used requests for `dependency_snapshots` resource
+  dependencySbomUsage:
+    description: Requests usage percent (used / limit) for `dependency_sbom` resource
+  dependencySbomLimit:
+    description: Requests limit for `dependency_sbom` resource
+  dependencySbomUsed:
+    description: Used requests for `dependency_sbom` resource
 
 runs:
   using: node20
