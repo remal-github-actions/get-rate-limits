@@ -38543,6 +38543,7 @@ async function run() {
             core.setOutput(`${outputName}Used`, used);
             const limit = rateLimit.resources[resource]?.limit ?? defaultLimits[resource];
             if (limit == null) {
+                core.setOutput(`${outputName}Usage`, 0);
                 continue;
             }
             const usage = Math.floor(100 * (used / limit));
