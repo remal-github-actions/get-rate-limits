@@ -43,6 +43,7 @@ async function run(): Promise<void> {
 
             const limit = rateLimit.resources[resource]?.limit ?? defaultLimits[resource]
             if (limit == null) {
+                core.setOutput(`${outputName}Usage`, 0)
                 continue
             }
 
