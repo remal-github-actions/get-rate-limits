@@ -38538,17 +38538,16 @@ async function run() {
             core.info(JSON.stringify(rateLimit, null, 2));
         });
         for (const resource in defaultLimits) {
-            const defaultLimit = defaultLimits[resource];
-            if (defaultLimit == null) {
+            const outputName = resource.replaceAll(/_([a-z])/g, match => match[1].toUpperCase());
+            const used = rateLimit.resources[resource]?.used ?? 0;
+            core.setOutput(`${outputName}Used`, used);
+            const limit = rateLimit.resources[resource]?.limit ?? defaultLimits[resource];
+            if (limit == null) {
                 continue;
             }
-            const limit = rateLimit.resources[resource]?.limit ?? defaultLimit;
-            const used = rateLimit.resources[resource]?.used ?? 0;
             const usage = Math.floor(100 * (used / limit));
-            const outputName = resource.replaceAll(/_([a-z])/g, match => match[1].toUpperCase());
             core.setOutput(`${outputName}Usage`, usage);
             core.setOutput(`${outputName}Limit`, limit);
-            core.setOutput(`${outputName}Used`, used);
         }
     }
     catch (error) {
